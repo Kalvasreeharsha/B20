@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Indian Cuisine Quiz</title>
+    <link rel="stylesheet" href="quiz.css">
+</head>
+<body>
+    <div class="quiz-container">
+        <div class="quiz-header">
+            <h1 class="quiz-title">🇮🇳 Indian Cuisine Quiz</h1>
+            <div class="question-counter">Question <span id="current-q">1</span> of <span id="total-q">5</span></div>
+            <div class="progress-bar">
+                <div class="progress-fill" id="progress"></div>
+            </div>
+        </div>
+
+        <h2 id="question">Which state is famous for 'Hyderabadi Dum Biryani'?</h2>
+        
+        <div id="options">
+            <div class="option" onclick="selectAnswer('Tamil Nadu')">Tamil Nadu</div>
+            <div class="option" onclick="selectAnswer('Telangana')">Telangana</div>
+            <div class="option" onclick="selectAnswer('Karnataka')">Karnataka</div>
+            <div class="option" onclick="selectAnswer('Maharashtra')">Maharashtra</div>
+        </div>
+
+        <div class="buttons">
+            <button id="prev" onclick="prevQuestion()" disabled>⏮ Previous</button>
+            <button id="next" onclick="nextQuestion()">Next ⏭</button>
+            <button id="submit" onclick="submitQuiz()" style="display:none;">✅ Submit Quiz</button>
+        </div>
+
+        <div id="result"></div>
+        
+        <div class="buttons">
+            <button id="back-home" onclick="goHome()">🏠 Back to Home</button>
+        </div>
+    </div>
+
+    <script src="quiz.js"></script>
+</body>
+</html>

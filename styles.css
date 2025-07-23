@@ -1,0 +1,462 @@
+/* Signature Cuisines of Bharat - Modern Design */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;700&display=swap');
+
+:root {
+    --primary: #6366f1;
+    --primary-light: #818cf8;
+    --secondary: #f59e0b;
+    --accent: #10b981;
+    --danger: #ef4444;
+    --dark: #0f172a;
+    --gray: #64748b;
+    --light: #f8fafc;
+    --glass: rgba(255, 255, 255, 0.1);
+    --glass-strong: rgba(255, 255, 255, 0.2);
+    --shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    --glow: 0 0 20px rgba(99, 102, 241, 0.3);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 25%, #16213e  50%, #0f3460 100%);
+    min-height: 100vh;
+    color: var(--light);
+    overflow-x: hidden;
+}
+
+/* Header */
+header {
+    background: var(--glass);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 20px 30px;
+    margin: 20px;
+    border-radius: 20px;
+    box-shadow: var(--shadow);
+}
+
+.navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 40px;
+}
+
+.home-link {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: var(--light);
+    font-weight: 500;
+    padding: 12px 20px;
+    border-radius: 12px;
+    background: var(--glass-strong);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.home-link:hover {
+    transform: translateY(-2px);
+    background: rgba(255, 255, 255, 0.15);
+    box-shadow: var(--glow);
+}
+
+.home-icon {
+    width: 20px;
+    height: 20px;
+    margin-right: 8px;
+}
+
+.title {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5em;
+    font-weight: 700;
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+/* Map */
+#map-container {
+    position: relative;
+    margin: 30px auto;
+    text-align: center;
+    padding: 20px;
+    max-width: 800px;
+}
+
+.state {
+    fill: var(--glass);
+    stroke: var(--primary);
+    stroke-width: 1.5;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
+    filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.1));
+}
+
+.state:hover {
+    fill: var(--primary);
+    stroke: var(--secondary);
+    stroke-width: 2;
+    transform: scale(1.02);
+    filter: drop-shadow(0 10px 15px rgba(99, 102, 241, 0.3));
+}
+
+/* Dialogs */
+#info-dialog {
+    display: none;
+    position: fixed;
+    background: var(--glass-strong);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: var(--light);
+    padding: 20px;
+    border-radius: 16px;
+    box-shadow: var(--shadow);
+    z-index: 1000;
+    max-width: 300px;
+}
+
+#info-dialog h3 {
+    color: var(--secondary);
+    font-size: 1.25rem;
+    margin-bottom: 8px;
+    font-weight: 600;
+}
+
+#overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.9);
+    backdrop-filter: blur(10px);
+    z-index: 9999;
+    overflow: auto;
+}
+
+.detailed-info {
+    background: var(--glass-strong);
+    backdrop-filter: blur(30px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 24px;
+    box-shadow: var(--shadow);
+    padding: 40px;
+    max-width: 1000px;
+    margin: 50px auto;
+    text-align: center;
+    color: var(--light);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.detailed-info h2 {
+    font-family: 'Playfair Display', serif;
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-size: 2.25rem;
+    margin-bottom: 24px;
+    font-weight: 700;
+}
+
+.detailed-info img {
+    width: 100%;
+    max-width: 500px;
+    height: 500px;
+    object-fit: cover;
+    border-radius: 20px;
+    margin: 20px 0;
+    box-shadow: var(--shadow);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.detailed-info .button-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 24px;
+    width: 100%;
+}
+
+.detailed-info button {
+    padding: 12px 24px;
+    background: linear-gradient(135deg, var(--primary), var(--primary-light));
+    color: white;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    font-weight: 500;
+    font-size: 14px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    min-width: 120px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.detailed-info button:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--glow);
+}
+
+.detailed-info button.secondary {
+    background: linear-gradient(135deg, var(--secondary), #f59e0b);
+}
+
+.detailed-info button.secondary:hover {
+    box-shadow: 0 0 20px rgba(245, 158, 11, 0.4);
+}
+
+.detailed-info button.close {
+    background: linear-gradient(135deg, var(--danger), #dc2626);
+}
+
+.detailed-info button.close:hover {
+    box-shadow: 0 0 20px rgba(239, 68, 68, 0.4);
+}
+
+/* State Names Container - Fixed Alignment */
+#state-names-container {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    background: var(--glass-strong);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    padding: 24px;
+    box-shadow: var(--shadow);
+    width: 380px;
+    max-height: 350px;
+    overflow-y: auto;
+    z-index: 100;
+}
+
+.box-heading {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 20px;
+    text-align: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding-bottom: 12px;
+}
+
+.columns-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6px;
+    align-items: start;
+}
+
+.column {
+    display: flex;
+    flex-direction: column;
+}
+
+.state-name {
+    padding: 10px 16px;
+    margin-bottom: 4px;
+    cursor: pointer;
+    border-radius: 10px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    font-size: 0.875rem;
+    font-weight: 400;
+    color: var(--light);
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid transparent;
+    text-align: left;
+    width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.state-name:hover {
+    background: rgba(99, 102, 241, 0.2);
+    border-color: var(--primary);
+    transform: translateX(4px);
+    color: var(--primary-light);
+    font-weight: 500;
+    box-shadow: 0 4px 12px rgba(99, 102, 241, 0.2);
+}
+
+/* Quiz Button */
+#quiz-button {
+    position: fixed;
+    bottom: 20px;
+    left: 420px;
+    padding: 14px 28px;
+    background: linear-gradient(135deg, var(--accent), #059669);
+    color: white;
+    border: none;
+    border-radius: 16px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 14px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 100;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+#quiz-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 0 25px rgba(16, 185, 129, 0.4);
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+    width: 6px;
+}
+
+::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--primary);
+    border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--primary-light);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .title { 
+        font-size: 2rem;
+        position: static;
+        transform: none;
+    }
+    
+    .navbar {
+        flex-direction: column;
+        height: auto;
+        gap: 12px;
+    }
+    
+    #state-names-container {
+        position: static;
+        margin: 20px;
+        width: auto;
+        max-height: none;
+    }
+    
+    .columns-container {
+        grid-template-columns: repeat(3, 1fr);
+    }
+    
+    #quiz-button {
+        position: static;
+        margin: 20px auto;
+        display: block;
+        left: auto;
+        bottom: auto;
+    }
+    
+    .detailed-info {
+        margin: 20px;
+        padding: 24px;
+        width: calc(100% - 40px);
+    }
+}
+
+@media (max-width: 480px) {
+    .columns-container {
+        grid-template-columns: 1fr 1fr;
+    }
+    
+    .title { font-size: 1.75rem; }
+    
+    .state-name {
+        font-size: 0.8rem;
+        padding: 8px 12px;
+    }
+}
+
+
+
+
+
+
+
+/* --- Styles to hide ALL Google Translate overlays/extra elements --- */
+
+/* 1. Hides the top banner/bar that appears after translation */
+/* Updated selector to match the new class name from your inspection */
+.VIpgJd-ZVi9od-ORHb-OEVmcd.skiptranslate { /* Targeting both classes for specificity */
+    display: none !important;
+    visibility: hidden !important; /* Ensure it's not just off-screen */
+    height: 0 !important;
+    top: 0 !important;
+}
+
+/* 2. Resets the body's top padding/margin that Google Translate adds for its banner */
+body {
+    top: 0px !important;
+    margin-top: 0px !important; /* Ensure body doesn't shift down */
+}
+
+/* 3. Hides the "Powered by Google Translate" text that often appears below the dropdown */
+/* This class name might also be the one you found if it reappears there,
+   but typically it's a separate element. Keep an eye on it. */
+.VIpgJd-ZVi9od-ORHb-OEVmCD { /* This specific class is often used for the "Powered by" text */
+    display: none !important;
+}
+
+/* --- End of overlay hiding styles --- */
+
+
+/* Your other existing CSS styles go here */
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    /* other default body styles */
+}
+
+.content {
+    margin-top: 20px;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0 20px;
+}
+
+#google_translate_element {
+    /* Positioning */
+    position: fixed; /* Stays in place even when scrolling */
+    top: 0px;       /* Distance from the top edge */
+    right: 10px;     /* Distance from the right edge */   /* Ensure it's on top of other content */
+
+    /* Visual styling to make it look like a button */
+    background-color: #f8f8f8; /* Light grey background */
+    border: 1px solid #ccc;    /* Light grey border */
+    border-radius: 5px;        /* Slightly rounded corners */
+    padding: 8px 12px;         /* Padding inside the button */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2); /* Subtle shadow for depth */
+    font-family: Arial, sans-serif; /* Match your site's font or use a common one */
+    font-size: 14px;           /* Adjust font size as needed */
+    cursor: pointer;           /* Indicate it's clickable */
+}
